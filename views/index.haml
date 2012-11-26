@@ -1,12 +1,12 @@
 !!!
-%html{"manifest"=>to("/manifest.appcache")}
+%html{"manifest"=>to("/manifest.appcache", false)}
   %head
     %title Test applications
     %meta{'http-equiv' => 'Content-Type', 'content' => 'text/html; charset=utf-8'}/
-    %script{'type'=>"text/javascript", 'charset'=>"utf-8", 'src'=>to("/js/jquery.js")}
-    %script{'type'=>"text/javascript", 'charset'=>"utf-8", 'src'=>to("/js/app.js")}
+    %script{'type'=>"text/javascript", 'charset'=>"utf-8", 'src'=>to("/js/jquery.js", false)}
+    %script{'type'=>"text/javascript", 'charset'=>"utf-8", 'src'=>to("/js/app.js", false)}
   %body
-    %h1 Test app
+    %h1 Test app version #{version}
     %p
-      %a{"href" => url("/inc"), "data-remote" => true} Refresh
+      %a{"href" => url("/inc", false), "data-remote" => true} Refresh
     #debug

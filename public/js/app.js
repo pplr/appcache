@@ -50,6 +50,10 @@
 	       e.append(event.type + " ");
 	   }
 
+	   function reload(){
+	       window.location.reload();
+	   }
+
 	   // Fired after the first cache of the manifest.
 	   appCache.addEventListener('cached', handleCacheEvent);
 
@@ -76,13 +80,16 @@
 	   // Fired when the manifest resources have been newly redownloaded.
 	   appCache.addEventListener('updateready', handleCacheEvent);
 
+	   appCache.addEventListener('cached', reload);
+	   appCache.addEventListener('updateready', reload);
+
 	   setInterval(function(){
 			   try{
 			       appCache.update();
 			   } catch (x) {
 
 			   }
-		       }, 30000);
+		       }, 10000);
 
        });
 

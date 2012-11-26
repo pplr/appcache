@@ -4,9 +4,9 @@ require 'sinatra'
 
 module AppCache
 
-  @@version = 0;
-
   class App < Sinatra::Base
+    @@version = 0;
+
     configure do
       mime_type :appcache, 'text/cache-manifest'
     end
@@ -17,8 +17,10 @@ module AppCache
       content_type :appcache
       "CACHE MANIFEST\n" +
         format("# version %d\n", @@version) +
-        "CACHE\n" +
-        to("/js/jquery.js") + "\n"
+        to("/js/jquery.js", false) + "\n" +
+        to("/js/app.js", false) + "\n" +
+        "NETWORK:\n*\n"
+
     end
 
     get "/" do
@@ -27,6 +29,12 @@ module AppCache
 
     post "/inc" do
       @@version = @@version + 1
+    end
+
+    helpers do
+      def version
+        @@version
+      end
     end
 
   end
